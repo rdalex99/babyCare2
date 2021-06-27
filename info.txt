@@ -1,0 +1,47 @@
+
+    <section id="service"  class="our_service_area">
+
+     <div class="container">
+
+     <div class="row">
+
+             <h2>Dash<span class="wpm_color_word">Board</span></h2>
+
+               <div class="wpm_border"> <i class="fa fa-smile-o"></i> </div>
+               @php
+                   $i = 1;
+               @endphp
+
+           </div>
+           <h3 style="margin-bottom: 6px;" >Personal information</h3>
+           <div class="row">
+            <form role="form"  method="post" action="{{action('User\DashboardController@message')}}" enctype="multipart/form-data">
+                @csrf
+                    <div class="card-body">
+                      <h3 style="margin-bottom: 6px;" >Send Message</h3>
+
+                      <div class="form-group">
+                        <textarea class="form-control" name="message" id="" cols="30" rows="10"></textarea>
+                      </div>
+                    </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+           </div>
+
+       </div>
+
+   </section>
+
+   <section class="chat_section" style="margin-top: 50px;">
+
+
+     <div class="container">
+       <h4 style="margin-bottom: 15px;">Messages</h4>
+       <hr>
+       @foreach ($messages as $item)
+         <div class="@if($item->from == Auth::user()->id) message-orange @else message-blue @endif">
+           <p class="message-content">{{$item->message}}</p>
+         </div>
+     @endforeach
+   </div>
+    </section>
